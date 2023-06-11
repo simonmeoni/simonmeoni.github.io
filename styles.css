@@ -80,7 +80,7 @@ h3{
 }
 ul {
     list-style-type: '\2023  ';
-    margin-left: 0.35em;
+    padding-left: 0.55em;
 }
 
 ul ul {
@@ -103,6 +103,7 @@ ul#menu, ul#menu li {
     margin-left: 0;
     margin-right: 0.5em;
     display: inline;
+    padding: 0;
 }
 
 h2 {
