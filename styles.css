@@ -1,0 +1,192 @@
+/* Reset styles */
+
+@font-face {
+  font-family: minipax-bold;
+  src: url(./webfonts/Minipax-Bold.woff2);
+}
+
+@font-face {
+    font-family: happy-times;
+    src: url(./webfonts/happy-times-NG_regular_master_web.woff2);
+}
+
+@font-face {
+    font-family: happy-times;
+    src: url(./webfonts/happy-times-ng_italic_master_web.woff2);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: minipax-regular;
+    src: url(./webfonts/Minipax-Regular.woff2);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+body {
+  font-family: happy-times;
+  line-height: 1;
+  color: #2b2b2b;
+  margin: 40px 54px;
+}
+
+a {
+  font-style: italic;
+  color: #5D5C5C;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #2b2b2b;
+}
+
+:root {
+  --fs: 44px;
+  --lh: 1.18181818;
+}
+
+h1,
+h3,
+ul,
+li {
+  font-size: calc(var(--fs) * 0.90);
+  line-height: var(--lh);
+  font-weight: normal;
+}
+
+h1 {
+    font-family: minipax-bold;
+    margin-bottom: calc(var(--fs) * var(--lh) * 0.20);
+}
+
+h2 {
+  font-size: calc(var(--fs) * 0.85);
+  line-height: var(--lh);
+  font-weight: normal;
+}
+
+h3{
+  margin-top: calc(var(--fs) * var(--lh) * 0.45);
+  margin-bottom: calc(var(--fs) * var(--lh) * 0.25);
+  font-family: minipax-bold;
+}
+ul {
+    list-style-type: '\2023  ';
+    margin-left: 1em;
+}
+
+ul ul {
+    list-style-type: none;
+}
+
+ul li {
+    font-size: calc(var(--fs) * 0.70);
+    margin-bottom: calc(var(--fs) * var(--lh) * 0.40);
+}
+
+ul ul li {
+    font-size: calc(var(--fs) * 0.7);
+    margin-bottom: calc(var(--fs) * var(--lh) * 0.67);
+}
+
+ul#menu, ul#menu li {
+    font-size: calc(var(--fs) * 0.70);
+    list-style-type: none;
+    margin-left: 0;
+    margin-right: 0.5em;
+    display: inline;
+}
+
+h2 {
+    margin-bottom: calc(var(--fs) * var(--lh) * 0.15);
+}
+
+h4 {
+  font-size: calc(var(--fs) * 0.70);
+  line-height: var(--lh);
+  font-weight: normal;
+  margin-bottom: calc(var(--fs) * var(--lh) * 0.25);
+}
+
+h5 {
+    font-size: calc(var(--fs) * 0.75);
+    font-style: italic;
+}
+
+.venue {
+    font-size: calc(var(--fs) * 0.55);
+    font-family: minipax-regular;
+}
+
+.team {
+    font-family: minipax-bold;
+}
+
+@media screen and (max-width: 1100px) {
+  :root {
+    --fs: 32px;
+  }
+  body {
+    margin: 30px 44px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  :root {
+    --fs: 28px;
+  }
+  body {
+    margin: 22px 34px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  :root {
+    --fs: 22px;
+  }
+  body {
+    margin: 12px 20px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  :root {
+    --fs: 18px;
+  }
+  body {
+    margin: 8px 15px;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  :root {
+    --fs: 2.444444444vw;
+  }
+  body {
+    margin: 2.2222222222vw 3vw;
+  }
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Text selection styles */
+::-moz-selection {
+  background: black;
+  color: white;
+}
+
+::selection {
+  background: black;
+  color: white;
+}
