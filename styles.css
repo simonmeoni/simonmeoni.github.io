@@ -80,7 +80,7 @@ h3{
 }
 ul {
     list-style-type: '\2023  ';
-    margin-left: 1em;
+    margin-left: 0.35em;
 }
 
 ul ul {
@@ -141,7 +141,7 @@ h5 {
 
 @media screen and (max-width: 920px) {
   :root {
-    --fs: 28px;
+    --fs: 30px;
   }
   body {
     margin: 22px 34px;
