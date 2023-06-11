@@ -150,7 +150,7 @@ h5 {
 
 @media screen and (max-width: 540px) {
   :root {
-    --fs: 22px;
+    --fs: 28px;
   }
   body {
     margin: 12px 20px;
@@ -159,7 +159,7 @@ h5 {
 
 @media screen and (max-width: 380px) {
   :root {
-    --fs: 18px;
+    --fs: 28px;
   }
   body {
     margin: 8px 15px;
