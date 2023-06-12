@@ -55,6 +55,7 @@ a:hover {
 
 h1,
 h3,
+p,
 ul,
 li {
   font-size: calc(var(--fs) * 0.90);
@@ -79,8 +80,15 @@ h3{
   font-family: minipax-bold;
 }
 ul {
-    list-style-type: '\2023  ';
-    padding-left: 0.55em;
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 0.75em;
+}
+
+p {
+  margin-top: calc(var(--fs) * var(--lh) * 0.45);
+  margin-bottom: calc(var(--fs) * var(--lh) * 0.25);
+  font-size: calc(var(--fs) * 0.6);
 }
 
 ul ul {
