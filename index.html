@@ -3,99 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://livejs.com/live.js"></script>
     <title>Simon Meoni</title>
+    <meta name="description" content="Simon Meoni — NLP researcher working on synthetic clinical data and privacy.">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.slate.min.css"
-    >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.slate.min.css">
 </head>
 <style>
     @font-face {
         font-family: 'Latitude-Regular';
         src: url('webfonts/Latitude-Regular.woff2') format('woff2');
+        font-display: swap;
     }
     @font-face {
         font-family: 'Karrik-Regular';
         src: url('webfonts/Karrik-Regular.woff2') format('woff2');
+        font-display: swap;
     }
     :root {
-        --pico-font-family: 'Latitude-Regular', serif;
+        --pico-font-family: 'Latitude-Regular', Georgia, serif;
+        --pico-line-height: 1.55;
+        --accent: #6ea8fe;
     }
-    h1, h2, h3 {
-        --pico-font-family: 'Karrik-Regular', serif;
+    h1, h2, h3, h4 {
+        --pico-font-family: 'Karrik-Regular', Georgia, serif;
+        --pico-typography-spacing-vertical: 0.6rem;
+        letter-spacing: -0.01em;
     }
-    a {
-        text-decoration: none;
+    body > main, body > header, body > footer {
+        max-width: 46rem;
+        margin-inline: auto;
+        padding-inline: 1.4rem;
     }
-    a:hover {
-        text-decoration: underline;
+    a { text-decoration: none; color: var(--accent); }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* header */
+    header { padding-top: 3.2rem; padding-bottom: 0.6rem; }
+    header h1 { font-size: 2.7rem; margin-bottom: 0.1rem; }
+    .role { font-size: 1.05rem; color: var(--pico-h3-color); margin: 0; }
+    .meta { color: var(--pico-muted-color); font-size: 0.92rem; margin-top: 0.3rem; }
+    .links { margin-top: 0.6rem; font-size: 0.95rem; }
+    .links a { margin-right: 0.35rem; }
+    .links span { color: var(--pico-muted-color); margin-right: 0.35rem; }
+    .badge {
+        display: inline-block; margin-top: 1rem;
+        font-size: 0.82rem; letter-spacing: 0.02em;
+        padding: 0.25rem 0.7rem; border-radius: 999px;
+        border: 1px solid var(--pico-muted-border-color);
+        color: var(--pico-muted-color);
     }
-    header {
-        margin-right: 2em;
+    .badge b { color: var(--accent); font-weight: 400; }
+
+    /* sections */
+    main { padding-top: 1rem; }
+    .section-title {
+        font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--pico-muted-color);
+        border-bottom: 1px solid var(--pico-muted-border-color);
+        padding-bottom: 0.4rem; margin-top: 2.6rem; margin-bottom: 1.2rem;
+    }
+    .lead { color: var(--pico-color); }
+
+    /* publication list */
+    .pub { display: grid; grid-template-columns: 3.2rem 1fr; gap: 1rem; margin-bottom: 1.4rem; }
+    .pub .year { color: var(--pico-muted-color); font-size: 0.85rem; padding-top: 0.15rem; font-feature-settings: "tnum"; }
+    .pub .title { display: block; font-size: 1.02rem; line-height: 1.4; }
+    .pub .authors { display: block; color: var(--pico-muted-color); font-size: 0.9rem; margin-top: 0.15rem; }
+    .pub .venue { display: block; color: var(--pico-muted-color); font-size: 0.85rem; font-style: italic; margin-top: 0.1rem; }
+    .pub .tags { display: block; margin-top: 0.3rem; font-size: 0.82rem; }
+    .pub .tags a {
+        border: 1px solid var(--pico-muted-border-color); border-radius: 4px;
+        padding: 0.05rem 0.4rem; margin-right: 0.3rem; color: var(--pico-muted-color);
+    }
+    .pub .tags a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+    .me { color: var(--pico-color); }
+
+    footer { color: var(--pico-muted-color); font-size: 0.85rem; padding-block: 3rem 2rem; }
+
+    @media (max-width: 30rem) {
+        header h1 { font-size: 2.1rem; }
+        .pub { grid-template-columns: 1fr; gap: 0.2rem; }
     }
 </style>
 <body>
 <header>
-    <hgroup>
-        <h1>Simon Meoni</h1>
-        <h3>PhD Student at <a href="https://arkhn.com/">Arkhn</a>+<a href="http://almanach.inria.fr/index-en.html">Almanach</a></h3>
-        <p>Paris, France</p>
-        <p>
-        <a href="mailto:simon.meoni@arkhn.com" target="_blank">email</a> •
-        <a href="https://github.com/simonmeoni" target="_blank">github</a> •
-        <a href="https://www.linkedin.com/in/smeoni/" target="_blank">linkedin</a> •
-        <a href="https://drive.google.com/file/d/1--_im3SIx-o8hPnnMBn0piGlO0iHys1e/view?usp=sharing"
-           target="_blank">cv</a>
-        </p>
-    </hgroup>
+    <h1>Simon Meoni</h1>
+    <p class="role">NLP Researcher — Synthetic Clinical Data &amp; Privacy</p>
+    <p class="meta">
+        PhD, <a href="https://arkhn.com/">Arkhn</a> + <a href="http://almanach.inria.fr/index-en.html">Inria Almanach</a> · Paris, France
+    </p>
+    <p class="links">
+        <a href="mailto:simonmeoni@aol.com">email</a><span>·</span>
+        <a href="assets/Simon_Meoni_CV.pdf">cv</a><span>·</span>
+        <a href="https://scholar.google.com/citations?user=IM1IBPYAAAAJ" target="_blank" rel="noopener">scholar</a><span>·</span>
+        <a href="https://github.com/simonmeoni" target="_blank" rel="noopener">github</a><span>·</span>
+        <a href="https://www.linkedin.com/in/smeoni/" target="_blank" rel="noopener">linkedin</a>
+    </p>
+    <span class="badge"><b>Open to work</b> — research roles in industry or academia</span>
 </header>
+
 <main>
-<h3>⬩ Publications ⬩</h3>
-<h4>2023</h4>
-<hgroup>
-    <p>Simon Meoni, Théo Ryffel, Éric de la Clergerie</p>
-    <p><a href="https://aclanthology.org/2023.bionlp-1.15" target="_blank">Large Language Models as Instructors: A Study on Multilingual Clinical Entity Extraction.</a></p>
-    <p>BioNLP Workshop, ACL</p>
-</hgroup>
+    <h2 class="section-title">About</h2>
+    <p class="lead">
+        I recently defended my PhD on generating and evaluating <b>synthetic clinical data</b>
+        under privacy constraints. My work studies the privacy–utility trade-off in medical text:
+        producing facsimile documents with large language models (DP fine-tuning, iterative DPO),
+        measuring re-identification risk through linkage and proximity attacks, and validating
+        utility on downstream tasks such as clinical entity extraction and ICD coding.
+    </p>
 
-<hgroup>
-    <p>Simon Meoni, Théo Ryffel, Éric de la Clergerie</p>
-    <p><a href="https://coria-taln-2023.sciencesconf.org/479291/document" target="_blank">Annotation d'entités cliniques en utilisant les Larges Modèles de Langue.</a></p>
-    <p>TALN</p>
-</hgroup>
+    <h2 class="section-title">Publications</h2>
 
-<hgroup>
-    <p>Simon Meoni, Théo Ryffel, Éric de la Clergerie</p>
-    <p><a href="">Annotate French Clinical Data Using Large Language Model Predictions.</a></p>
-    <p>HealthNLP Workshop, ICHI</p>
-</hgroup>
+    <div class="pub">
+        <div class="year">2025</div>
+        <div>
+            <a class="title" href="https://www.researchgate.net/publication/392497257" target="_blank" rel="noopener">Synthetic Documents for Medical Tasks: Bridging Privacy with Knowledge Injection and Reward Mechanism</a>
+            <span class="authors"><span class="me">Simon Meoni</span>, Éric de la Clergerie, Théo Ryffel</span>
+            <span class="venue">CL4Health — Patient-Oriented Language Processing Workshop</span>
+        </div>
+    </div>
 
-<hgroup>
-    <p>Varun Gangal, Sebastian Gehrmann et al.</p>
-    <p><a href="https://nejlt.ep.liu.se/article/view/4725" target="_blank">NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation.</a></p>
-    <p>NEJT</p>
-</hgroup>
+    <div class="pub">
+        <div class="year">2024</div>
+        <div>
+            <a class="title" href="https://aclanthology.org/2024.cl4health-1.14/" target="_blank" rel="noopener">Generating Synthetic Documents with Clinical Keywords: A Privacy-Sensitive Methodology</a>
+            <span class="authors"><span class="me">Simon Meoni</span>, Éric de la Clergerie, Théo Ryffel</span>
+            <span class="venue">CL4Health @ LREC-COLING</span>
+            <span class="tags"><a href="https://aclanthology.org/2024.cl4health-1.14/" target="_blank" rel="noopener">acl</a></span>
+        </div>
+    </div>
 
-<h3>⬩Competitions⬩</h3>
-<h4>2023</h4>
-<hgroup>
-    <p>Rian Touchent, Éric de la Clergerie, Simon Meoni</p>
-    <p>Deft, Défi Fouille de Textes</p>
-    <p>Taln Shared Task</p>
-    <p><a class="venue">code</a> • <a class="venue">report</a></p>
-</hgroup>
+    <div class="pub">
+        <div class="year">2023</div>
+        <div>
+            <a class="title" href="https://aclanthology.org/2023.bionlp-1.15" target="_blank" rel="noopener">Large Language Models as Instructors: A Study on Multilingual Clinical Entity Extraction</a>
+            <span class="authors"><span class="me">Simon Meoni</span>, Théo Ryffel, Éric de la Clergerie</span>
+            <span class="venue">BioNLP Workshop @ ACL</span>
+            <span class="tags"><a href="https://aclanthology.org/2023.bionlp-1.15" target="_blank" rel="noopener">acl</a></span>
+        </div>
+    </div>
 
-<h4>2022</h4>
-<hgroup>
-    <p>Jigsaw Rate Severity of Toxic Comments</p>
-    <p>Rank: 204th of 2301 (top 9%)</p>
-    <p>Kaggle Competition</p>
-    <p><a href="https://github.com/simonmeoni/jrstc-competition" target="_blank">code</a></p>
-</hgroup>
+    <div class="pub">
+        <div class="year">2023</div>
+        <div>
+            <a class="title" href="https://coria-taln-2023.sciencesconf.org/479291/document" target="_blank" rel="noopener">Annotation d'entités cliniques en utilisant les larges modèles de langue</a>
+            <span class="authors"><span class="me">Simon Meoni</span>, Théo Ryffel, Éric de la Clergerie</span>
+            <span class="venue">TALN</span>
+        </div>
+    </div>
+
+    <div class="pub">
+        <div class="year">2023</div>
+        <div>
+            <a class="title" href="https://nejlt.ep.liu.se/article/view/4725" target="_blank" rel="noopener">NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation</a>
+            <span class="authors">Kaustubh Dhole, Varun Gangal, Sebastian Gehrmann, et al. (incl. <span class="me">Simon Meoni</span>)</span>
+            <span class="venue">Northern European Journal of Language Technology (NEJLT)</span>
+        </div>
+    </div>
+
+    <div class="pub">
+        <div class="year">2019</div>
+        <div>
+            <a class="title" href="http://eprints.gla.ac.uk/187633/" target="_blank" rel="noopener">Adapting NLG Methods to Social Robotics</a>
+            <span class="authors"><span class="me">Simon Meoni</span>, Mary Ellen Foster</span>
+            <span class="venue">NLP for Conversational AI Workshop @ ACL</span>
+        </div>
+    </div>
+
+    <div class="pub">
+        <div class="year">2016</div>
+        <div>
+            <a class="title" href="https://hal.inria.fr/hal-01374102/document" target="_blank" rel="noopener">Wake up, standOff!</a>
+            <span class="authors">Piotr Bański, Bertrand Gaiffe, Patrice Lopez, <span class="me">Simon Meoni</span>, Laurent Romary, et al.</span>
+            <span class="venue">TEI Conference</span>
+        </div>
+    </div>
+
+    <h2 class="section-title">Competitions</h2>
+
+    <div class="pub">
+        <div class="year">2023</div>
+        <div>
+            <span class="title">DEFT — Défi Fouille de Textes</span>
+            <span class="authors">Rian Touchent, Éric de la Clergerie, <span class="me">Simon Meoni</span></span>
+            <span class="venue">TALN Shared Task</span>
+        </div>
+    </div>
+
+    <div class="pub">
+        <div class="year">2022</div>
+        <div>
+            <span class="title">Jigsaw — Rate Severity of Toxic Comments</span>
+            <span class="authors">204th / 2301 — top 9%</span>
+            <span class="venue">Kaggle Competition</span>
+            <span class="tags"><a href="https://github.com/simonmeoni/jrstc-competition" target="_blank" rel="noopener">code</a></span>
+        </div>
+    </div>
 </main>
+
+<footer>
+    © Simon Meoni · built with <a href="https://picocss.com/" target="_blank" rel="noopener">Pico</a>
+</footer>
 </body>
 </html>
