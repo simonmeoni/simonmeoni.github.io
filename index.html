@@ -76,15 +76,20 @@
     .me { color: var(--pico-color); }
 
     /* skills */
-    .skills { display: grid; grid-template-columns: 3.6rem 1fr; gap: 1rem 1rem; }
-    .skills dt { color: var(--pico-muted-color); font-size: 0.85rem; padding-top: 0.1rem; }
-    .skills dd { margin: 0 0 0.8rem 0; font-size: 0.95rem; }
+    .skills { display: grid; grid-template-columns: 7rem 1fr; gap: 0.9rem 1.2rem; align-items: baseline; }
+    .skills dt {
+        color: var(--pico-muted-color); font-size: 0.8rem;
+        text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.4;
+        overflow-wrap: normal; hyphens: none;
+    }
+    .skills dd { margin: 0; font-size: 0.95rem; line-height: 1.5; }
 
     footer { color: var(--pico-muted-color); font-size: 0.85rem; padding-block: 3rem 2rem; }
 
     @media (max-width: 30rem) {
         header h1 { font-size: 2.1rem; }
         .row, .skills { grid-template-columns: 1fr; gap: 0.2rem; }
+        .skills dd { margin-bottom: 0.9rem; }
     }
 </style>
 <body>
