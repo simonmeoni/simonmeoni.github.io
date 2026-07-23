@@ -1,138 +1,143 @@
 // Simon Meoni — CV
 // Build: typst compile cv.typ ../assets/Simon_Meoni_CV.pdf
 
-#let accent = rgb("#1f6feb")
-#let muted  = rgb("#666666")
-#let rule   = rgb("#e3e3e3")
+#let ink    = rgb("#1a1a1a")
+#let mid    = rgb("#555555")
+#let faint  = rgb("#8a8a8a")
+#let hair   = rgb("#e6e6e6")
 
 #set document(title: "Simon Meoni — CV", author: "Simon Meoni")
-#set page(paper: "a4", margin: (x: 1.7cm, top: 1.35cm, bottom: 1.2cm))
-#set text(font: "Helvetica Neue", size: 9.7pt, fill: rgb("#1a1a1a"), lang: "en")
-#set par(leading: 0.54em, justify: false)
-#show link: it => text(fill: accent)[#it]
+#set page(paper: "a4", margin: (x: 1.9cm, top: 1.3cm, bottom: 1.0cm))
+#set text(font: "Helvetica Neue", size: 9pt, fill: ink, lang: "en")
+#set par(leading: 0.45em, justify: false)
+#show link: it => underline(offset: 1.5pt, stroke: 0.4pt + faint)[#text(fill: ink)[#it]]
 
-#let section(title) = {
-  v(0.32em)
-  text(size: 8pt, weight: "medium", tracking: 0.18em, fill: muted)[#upper(title)]
-  v(-0.3em)
-  line(length: 100%, stroke: 0.5pt + rule)
-  v(0.1em)
+#let sidebar = 3.4cm
+#let gut = 0.7cm
+
+// — section: label in the left rail, content on the right —
+#let section(label, content) = {
+  block(above: 0.55em, below: 0em, breakable: true)[
+    #grid(
+      columns: (sidebar, 1fr),
+      column-gutter: gut,
+      align: (left + top, left + top),
+      text(size: 7.6pt, weight: "bold", tracking: 0.16em, fill: faint)[#upper(label)],
+      content,
+    )
+  ]
 }
 
-#let entry(period, title, org, loc: none, body: none) = {
+// — one entry: year column + body —
+#let item(year, head, sub: none, body: none) = {
   grid(
-    columns: (3.2cm, 1fr),
-    column-gutter: 0.6em,
-    row-gutter: 0.2em,
-    text(size: 8.4pt, fill: muted)[#period],
+    columns: (2.1cm, 1fr),
+    column-gutter: 0.4cm,
+    row-gutter: 0pt,
+    text(size: 8.3pt, fill: faint)[#year],
     {
-      text(weight: "semibold")[#title]
-      if org != none [ #h(0.4em)#text(fill: muted)[· #org] ]
-      if loc != none [ #h(0.4em)#text(size: 8pt, fill: muted)[#loc] ]
+      text(weight: "medium", size: 9.7pt)[#head]
+      if sub != none { text(fill: mid)[ \u{2002}#sub] }
       if body != none {
-        v(0.15em)
-        set text(size: 9pt, fill: rgb("#333333"))
+        linebreak()
+        set text(size: 9pt, fill: mid)
         body
       }
     },
   )
-  v(0.45em)
+  v(0.2em)
 }
 
+// ─────────── HEADER ───────────
 #grid(
   columns: (1fr, auto),
   align: (left + bottom, right + bottom),
   {
-    text(size: 22pt, weight: "bold", tracking: -0.01em)[Simon Meoni]
-    h(0.4em)
-    text(size: 13pt, fill: muted)[PhD]
-    v(0.1em)
-    text(size: 10.5pt, fill: accent)[NLP Researcher — Synthetic Clinical Data & Privacy]
+    text(size: 25pt, weight: "regular", tracking: -0.015em)[Simon Meoni]
+    text(size: 11pt, fill: faint)[ \u{2002}PhD]
   },
-  text(size: 8.6pt, fill: muted)[
+  text(size: 8.2pt, fill: mid)[
     #link("mailto:simonmeoni@aol.com")[simonmeoni\@aol.com]\
-    #link("https://simonmeoni.github.io")[simonmeoni.github.io]\
-    #link("https://github.com/simonmeoni")[github.com/simonmeoni]\
-    #link("https://www.linkedin.com/in/smeoni/")[linkedin.com/in/smeoni]
+    #link("https://simonmeoni.github.io")[simonmeoni.github.io] · #link("https://github.com/simonmeoni")[github.com/simonmeoni]
   ],
 )
-#v(0.4em)
-#line(length: 100%, stroke: 0.8pt + rgb("#1a1a1a"))
+#v(0.45em)
+#text(size: 10pt, fill: mid, tracking: 0.01em)[Research Engineer · NLP — Synthetic Clinical Data & Privacy]
+#v(0.7em)
+#line(length: 100%, stroke: 0.6pt + ink)
 
-#section("Profile")
-PhD in Natural Language Processing, specialised in generating and evaluating
-*synthetic clinical data* under privacy constraints. Research bridges large
-language models, the privacy–utility trade-off, and downstream medical tasks
-(clinical entity extraction, ICD coding). Open to research roles in industry or academia.
+// ─────────── PROFILE ───────────
+#section("Profile")[
+  PhD in Natural Language Processing specialised in generating and evaluating
+  *synthetic clinical data* under privacy constraints, now a Research Engineer at
+  Arkhn building LLM-based clinical document generation with compact, self-hosted
+  models. Work bridges large language models, the privacy–utility trade-off, and
+  downstream medical tasks such as clinical entity extraction and ICD coding.
+]
 
-#section("Experience")
+// ─────────── EXPERIENCE ───────────
+#section("Experience")[
+  #item("2026 —", "Research Engineer", sub: "Arkhn, Paris",
+    body: [LLM-based clinical document generation for Arkhn's hospital assistant: agent
+      architecture, structured patient-context with source traceability, human-in-the-loop
+      workflows on compact, self-hosted models.])
+  #item("2022 — 26", "Doctoral Researcher (CIFRE)", sub: "Arkhn × Inria Almanach, Paris",
+    body: [Privacy-preserving synthetic clinical document generation with LLMs: facsimile
+      documents, DP fine-tuning and iterative DPO, linkage/proximity privacy attacks,
+      downstream evaluation on ICD-9 and semantic similarity.])
+  #item("2022", "NLP Engineer", sub: "Arkhn, Paris",
+    body: [NLP components for structuring clinical documents within Arkhn's
+      health-data platform, before transitioning to the industrial PhD.])
+  #item("2020 — 22", "NLP Data Scientist", sub: "360 medics, Lyon",
+    body: [Low-resource clinical NER on French medical data: semi-automatic annotation,
+      transformer deployment and latency optimisation, rule and classifier baselines.])
+  #item("2019 — 20", "Developer / Analyst", sub: "Orange, Nancy",
+    body: [Infrastructure test-automation: functional specifications, migration of the
+      architecture to Kubernetes, continuous-integration setup.])
+  #item("2019", "Research Engineer", sub: "University of Glasgow, Computing Science",
+    body: [Natural language generation for social robotics — socially intelligent agents.])
+  #item("2015 — 19", "NLP Engineer", sub: "CNRS — ATILF, Nancy",
+    body: [Linguistic pipelines for ISTEX / TermITH (terminology extraction, XML/TEI),
+      technical lead on CoReA2D annotation tooling, Démonette web resource.])
+]
 
-#entry(
-  "May 2022 — 2026", "PhD Researcher (CIFRE)", "Arkhn / Inria Almanach", loc: "Paris, France",
-  body: [
-    Thesis: privacy-preserving synthetic clinical document generation with LLMs.
-    Facsimile documents, DP fine-tuning and iterative DPO, linkage/proximity
-    privacy attacks, ICD-9 and semantic-similarity downstream evaluation.
-    Defended 17 June 2026.
-  ],
-)
+// ─────────── EDUCATION ───────────
+#section("Education")[
+  #item("2022 — 26", "PhD, Natural Language Processing", sub: "Sorbonne Université · defended 19 June 2026")
+  #item("2014 — 15", "M.Sc. Cognitive Science & NLP", sub: "Université de Lorraine")
+  #item("2009 — 12", "B.Sc. Cognitive & Computer Science", sub: "Université de Lorraine")
+]
 
-#entry(
-  "2020 — 2022", "NLP Data Scientist", "360 medics", loc: "Lyon, France",
-  body: [
-    Low-resource clinical NER on French medical data: semi-automatic annotation
-    strategies, transformer deployment and latency optimisation, rule/classifier baselines.
-  ],
-)
+// ─────────── PUBLICATIONS ───────────
+#section("Selected Publications")[
+  #set par(leading: 0.5em)
+  #let pub(year, title, venue, url: none) = {
+    grid(columns: (2.1cm, 1fr), column-gutter: 0.4cm,
+      text(size: 8.3pt, fill: faint)[#year],
+      {
+        text(size: 9.3pt)[#title]
+        text(fill: faint, size: 8.6pt)[ \u{2002}#venue]
+        if url != none { text(size: 8.6pt)[ #link(url)[↗]] }
+      })
+    v(0.28em)
+  }
+  #pub("2025", [*Synthetic Documents for Medical Tasks: Bridging Privacy with Knowledge Injection and Reward Mechanism*], "CL4Health")
+  #pub("2024", [*Generating Synthetic Documents with Clinical Keywords: A Privacy-Sensitive Methodology*], "CL4Health @ LREC-COLING", url: "https://aclanthology.org/2024.cl4health-1.14/")
+  #pub("2023", [*Large Language Models as Instructors: A Study on Multilingual Clinical Entity Extraction*], "BioNLP @ ACL", url: "https://aclanthology.org/2023.bionlp-1.15/")
+  #pub("2023", [*Annotate French Clinical Data Using Large Language Model Predictions*], "IEEE ICHI", url: "https://doi.org/10.1109/ICHI57859.2023.00099")
+  #pub("2023", [NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation], "NEJLT")
+  #pub("2019", [Adapting NLG Methods to Social Robotics], "NLP for Conversational AI @ ACL")
+  #v(0.05em)
+  #text(size: 8.2pt, fill: faint)[Full list — #link("https://scholar.google.com/citations?user=IM1IBPYAAAAJ")[Google Scholar] · #link("https://dblp.org/pid/351/3668.html")[DBLP]]
+]
 
-#entry(
-  "2019 — 2020", "Developer / Analyst", "Orange", loc: "Nancy, France",
-  body: [
-    Infrastructure test-automation software: functional specs, migration of the
-    architecture to Kubernetes, continuous-integration setup.
-  ],
-)
-
-#entry(
-  "2019", "Research Engineer", "University of Glasgow, School of Computing Science", loc: "Glasgow, UK",
-  body: [
-    Natural language generation for social robotics — socially intelligent robotic agents.
-  ],
-)
-
-#entry(
-  "2015 — 2019", "NLP Engineer", "CNRS — ATILF", loc: "Nancy, France",
-  body: [
-    Linguistic pipelines for ISTEX/TermITH (terminology extraction & disambiguation,
-    XML/TEI), technical lead on CoReA2D semantic-annotation tooling, Démonette web resource.
-  ],
-)
-
-#section("Education")
-
-#entry("2014 — 2015", "M.Sc. Cognitive Science & NLP", "Université de Lorraine")
-#entry("2013 — 2014", "M.Sc. Cognitive Science", "Université de Lorraine")
-#entry("2009 — 2012", "B.Sc. Cognitive & Computer Science", "Université de Lorraine")
-
-#section("Selected Publications")
-
-#set enum(numbering: n => text(fill: muted)[#n.], spacing: 0.6em)
-+ *Synthetic Documents for Medical Tasks: Bridging Privacy with Knowledge Injection and Reward Mechanism.* S. Meoni, É. de la Clergerie, T. Ryffel. #text(fill: muted)[CL4Health, 2025.]
-+ *Generating Synthetic Documents with Clinical Keywords: A Privacy-Sensitive Methodology.* S. Meoni, É. de la Clergerie, T. Ryffel. #text(fill: muted)[CL4Health @ LREC-COLING, 2024.] #link("https://aclanthology.org/2024.cl4health-1.14/")[acl]
-+ *Large Language Models as Instructors: A Study on Multilingual Clinical Entity Extraction.* S. Meoni, T. Ryffel, É. de la Clergerie. #text(fill: muted)[BioNLP @ ACL, 2023.] #link("https://aclanthology.org/2023.bionlp-1.15/")[acl]
-+ *NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation.* K. Dhole, V. Gangal, S. Gehrmann, et al. #text(fill: muted)[NEJLT, 2023.]
-+ *Adapting NLG Methods to Social Robotics.* S. Meoni, M. E. Foster. #text(fill: muted)[NLP for Conversational AI @ ACL, 2019.]
-
-#v(0.12em)
-#text(size: 8.4pt, fill: muted)[Full list: #link("https://scholar.google.com/citations?user=IM1IBPYAAAAJ")[Google Scholar] · #link("https://dblp.org/pid/351/3668.html")[DBLP]]
-
-#section("Skills")
-#grid(
-  columns: (3.2cm, 1fr),
-  column-gutter: 0.6em,
-  row-gutter: 0.28em,
-  text(size: 8.4pt, fill: muted)[Languages], [Python, Java, LaTeX/Typst, SQL],
-  text(size: 8.4pt, fill: muted)[ML / NLP], [PyTorch, Lightning, Transformers, spaCy, LLM fine-tuning (SFT/DPO), differential privacy],
-  text(size: 8.4pt, fill: muted)[Infra], [Docker, Kubernetes, Git, CI/CD, Google Cloud Platform],
-  text(size: 8.4pt, fill: muted)[Spoken], [French (native), English (fluent)],
-)
+// ─────────── SKILLS ───────────
+#section("Skills")[
+  #set par(leading: 0.55em)
+  #grid(columns: (1.9cm, 1fr), column-gutter: 0.4cm, row-gutter: 0.4em,
+    text(size: 8.3pt, fill: faint)[ML / NLP], text(size: 9pt, fill: mid)[LLM fine-tuning & alignment (Transformers, TRL, SFT / DPO), reward modeling, synthetic data generation, differential privacy, PyTorch, Lightning, spaCy],
+    text(size: 8.3pt, fill: faint)[LLM Agents], text(size: 9pt, fill: mid)[LLM agents & orchestration (Claude SDK, LangGraph, Deep Agent), evaluation & observability (Weights & Biases, Langfuse)],
+    text(size: 8.3pt, fill: faint)[Engineering], text(size: 9pt, fill: mid)[Python, Java, SQL, LaTeX / Typst, Docker, Kubernetes, vLLM, FastAPI, Git, CI/CD (GitHub Actions), GCP],
+    text(size: 8.3pt, fill: faint)[Spoken], text(size: 9pt, fill: mid)[French (native), English (professional)],
+  )
+]
